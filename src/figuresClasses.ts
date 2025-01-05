@@ -18,13 +18,15 @@ export class Triangle implements Figure {
     this.color = color;
 
     if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('Error message');
+      throw new Error('Side lengths must be positive numbers.');
     }
 
     const sides = [a, b, c].sort((x, y) => x - y);
 
     if (sides[2] >= sides[0] + sides[1]) {
-      throw new Error('Error message');
+      throw new Error(
+        'The sum of any two sides must be greater than the third side.',
+      );
     }
   }
 
@@ -48,7 +50,7 @@ export class Circle implements Figure {
     this.color = color;
 
     if (radius <= 0) {
-      throw new Error('Error message');
+      throw new Error('Radius must be a positive number');
     }
   }
 
@@ -72,7 +74,7 @@ export class Rectangle implements Figure {
     this.color = color;
 
     if (width <= 0 || height <= 0) {
-      throw new Error('Error message');
+      throw new Error('Width and height must be positive numbers.');
     }
   }
 
@@ -83,6 +85,6 @@ export class Rectangle implements Figure {
   }
 }
 
-export function getInfo(figure): string {
+export function getInfo(figure: Figure): string {
   return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
 }
